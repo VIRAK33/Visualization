@@ -19,7 +19,9 @@ def verify_password(username, password):
 @app.route('/')
 @auth.login_required
 def index():
-    return "Hello, %s!" % auth.current_user()
+    return render_template('index.html')
+
+
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run()
