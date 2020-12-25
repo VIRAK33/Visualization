@@ -2,12 +2,19 @@ import flask
 import flask_login
 from flask_sqlalchemy import SQLAlchemy
 
+from blueprints.seaborn.view import bargraph
+from blueprints.upload.view import uploaddata
+from blueprints.seaborn.view import heatmap
+
 app = flask.Flask(__name__)
 app.secret_key = "b'\x8b\x16\xc1\x02N&Nr\xee\x02!0'"
 app.debug = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost/flaskdb'
 db =  SQLAlchemy(app)
 
+app.register_blueprint(bargraph)
+app.register_blueprint(uploaddata)
+app.register_blueprint(heatmap)
 
 class User(db.Model):
     __tablename__ = 'users'
